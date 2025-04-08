@@ -9,7 +9,7 @@ printf("CADSTRE SUAS CARTAS E BOM JOGO:\n");
 
 char letra_estado_1, letra_estado_2;
 char codigo_cidade_1, codigo_cidade_2;
-char nome_cidade_1[50], nome_cidade_2[50];
+char nome_cidade_1[20], nome_cidade_2[20];
 int populacao_1, populacao_2;
 float area_1, area_2;
 float pib_1, pib_2;
@@ -22,8 +22,8 @@ float super_poder1, super_poder2;
 
 printf("**** carta 1****\n");
 
-printf("digite letra_estado_1:\n");
-scanf("%s", &letra_estado_1);
+printf("digite letra_estado_1:  \n");
+scanf("%c", &letra_estado_1);
 
 printf("digite codigo_cidade_1:\n");
 scanf("%s", &codigo_cidade_1);
