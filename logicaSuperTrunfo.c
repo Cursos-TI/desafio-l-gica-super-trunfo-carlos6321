@@ -1,141 +1,134 @@
 #include <stdio.h>
 
-int main(){
+int main() {
 
-             printf("BEM VINDO AO SUPER TRUNFO:\n");
-printf("CADSTRE SUAS CARTAS E BOM JOGO:\n");
+    // Definição das variáveis
+    char estado1, estado2;
+    char codigo1[5], codigo2[5];
+    char nomeCidade1[50], nomeCidade2[50];
+    unsigned long int populacao1, populacao2;
+    float area1, area2;
+    float pib1, pib2;
+    int pontosTuristicos1, pontosTuristicos2;
+    float densidadePopulacional1, densidadePopulacional2;
+    float pibPerCapita1, pibPerCapita2;
+    float superPoder1, superPoder2;
 
- // Definindo as Variaveis
+    // Entrada de dados da primeira carta
 
-char letra_estado_1, letra_estado_2;
-char codigo_cidade_1, codigo_cidade_2;
-char nome_cidade_1[20], nome_cidade_2[20];
-int populacao_1, populacao_2;
-float area_1, area_2;
-float pib_1, pib_2;
-int pontos_turristico_1, pontos_turristico_2;
-float densidade_populacional_1, densidade_populacional_2;
-float pib_percapta_1, pib_percapta_2;
-float super_poder1, super_poder2;
+    printf("\n--- Cadastro da Primeira Cidade ---\n");
+    printf("Digite a letra do estado: ");
+    scanf("%c", &estado1);
 
-// **** CARTA 1 ****
+    printf("Digite o código da cidade: ");
+    scanf("%s", codigo1);
 
-printf("**** carta 1****\n");
+    printf("Digite o nome da cidade: ");
+    scanf(" %[^\n]", nomeCidade1);
 
-printf("digite letra_estado_1:  \n");
-scanf("%c", &letra_estado_1);
+    printf("Digite a população da cidade: ");
+    scanf("%lu", &populacao1);
 
-printf("digite codigo_cidade_1:\n");
-scanf("%s", &codigo_cidade_1);
+    printf("Digite a área da cidade (em km²): ");
+    scanf("%f", &area1);
 
-printf("digite nome_cidade_1:\n");
-scanf("%s", &nome_cidade_1);
+    printf("Digite o PIB da cidade (em bilhões de reais): ");
+    scanf("%f", &pib1);
 
-printf("digite populacao_1:\n");
-scanf("%d", &populacao_1);
+    printf("Digite a quantidade de pontos turísticos: ");
+    scanf("%d", &pontosTuristicos1);
 
-printf("digite area_1 KM²:\n");
-scanf("%f", &area_1);
+    // Entrada de dados da segunda carta
+    printf("\n--- Cadastro da Segunda Cidade ---\n");
+    printf("Digite a letra do estado: ");
+    scanf(" %c", &estado2);
 
-printf("digite o pib_1 Bilhoes R$:\n");
-scanf("%f", &pib_1);
+    printf("Digite o código da cidade: ");
+    scanf("%s", codigo2);
 
-printf("digite pontos_turristico_1:\n");
-scanf("%d", &pontos_turristico_1);
+    printf("Digite o nome da cidade: ");
+    scanf(" %[^\n]", nomeCidade2);
 
-// CALCULANDO AS METRICAS DENSIDADE POPULACIONAL E O PIB PERCAPTA
+    printf("Digite a população da cidade: ");
+    scanf("%lu", &populacao2);
 
-densidade_populacional_1 =(float) (populacao_1 / area_1);
-printf("a densidade_populacinal_1 e:%f\n", densidade_populacional_1 );
+    printf("Digite a área da cidade (em km²): ");
+    scanf("%f", &area2);
 
-pib_percapta_1 = (float) (pib_1 / populacao_1);
-printf(" o pib_percapta_1 e: %f\n", pib_percapta_1);
+    printf("Digite o PIB da cidade (em bilhões de reais): ");
+    scanf("%f", &pib2);
 
-//DEFININDO O SUPER-TRUNFO SUPER PODER
+    printf("Digite a quantidade de pontos turísticos: ");
+    scanf("%d", &pontosTuristicos2);
 
-super_poder1= (float)(populacao_1 + area_1 + pib_1 + pib_percapta_1 + area_1/populacao_1);
-printf("super_poder1 é: %f\n", super_poder1);
+    // Cálculo das métricas
+    densidadePopulacional1 = populacao1 / area1;
+    densidadePopulacional2 = populacao2 / area2;
+    pibPerCapita1 = (pib1 * 1000000000) / populacao1;
+    pibPerCapita2 = (pib2 * 1000000000) / populacao2;
+    superPoder1 = populacao1 + area1 + pib1 + pontosTuristicos1 + pibPerCapita1 + (1.0 / densidadePopulacional1);
+    superPoder2 = populacao2 + area2 + pib2 + pontosTuristicos2 + pibPerCapita2 + (1.0 / densidadePopulacional2);
 
+    int opcao1, opcao2;
+    float valor1A, valor2A, valor1B, valor2B, soma1, soma2;
+    int densidade1 = 0, densidade2 = 0; // Flags para tratar a comparação inversa
 
-              //**** CARTA 2 ****
-              
-printf("****carta 2 ****\n");              
-        
-printf("digite letra_estado_2:\n");
-scanf("%s", &letra_estado_2);
-              
-printf("digite codigo_cidade_2:\n");
-scanf("%s", &codigo_cidade_2);
-              
-printf("digite nome_cidade_2:\n");
-scanf("%s", &nome_cidade_2);
-              
-printf("digite populacao_2:\n");
-scanf("%d", &populacao_2);
-              
-printf("digite area_2 KM²:\n");
-scanf("%f", &area_2);
-              
-printf("digite o pib_2 Bilhoes de R$:\n");
-scanf("%f", &pib_2);
-              
-printf("digite pontos_turristico_2:\n");
-scanf("%d", &pontos_turristico_2);
+    // Menu para escolha do primeiro atributo
+    printf("\nEscolha o PRIMEIRO atributo para comparar:\n");
+    printf("1 - População\n2 - Área\n3 - PIB\n4 - Pontos Turísticos\n5 - Densidade Populacional (menor vence)\n6 - PIB Per Capita\n7 - Super Poder\n");
+    printf("Digite a opção desejada: ");
+    scanf("%d", &opcao1);
 
-// CALCULANDO AS METRICAS DENSIDADE POPULACIONAL E O PIB PERCAPTA
+    switch (opcao1) {
+        case 1: valor1A = populacao1; valor2A = populacao2; break;
+        case 2: valor1A = area1; valor2A = area2; break;
+        case 3: valor1A = pib1; valor2A = pib2; break;
+        case 4: valor1A = pontosTuristicos1; valor2A = pontosTuristicos2; break;
+        case 5: valor1A = densidadePopulacional1; valor2A = densidadePopulacional2; densidade1 = 1; break;
+        case 6: valor1A = pibPerCapita1; valor2A = pibPerCapita2; break;
+        case 7: valor1A = superPoder1; valor2A = superPoder2; break;
+        default: printf("\nOpção inválida!\n"); return 1;
+    }
 
-densidade_populacional_2 =(float) (populacao_2 / area_2);
-printf("a densidade_populacinal_2 e:%f\n", densidade_populacional_2 );
+    // Menu para escolha do segundo atributo (não pode ser igual ao primeiro)
+    printf("\nEscolha o SEGUNDO atributo para comparar (diferente do primeiro):\n");
+    printf("1 - População\n2 - Área\n3 - PIB\n4 - Pontos Turísticos\n5 - Densidade Populacional (menor vence)\n6 - PIB Per Capita\n7 - Super Poder\n");
+    printf("Digite a opção desejada: ");
+    scanf("%d", &opcao2);
 
-pib_percapta_2 = (float) (pib_2 / populacao_2);
-printf(" o pib_percapta_2 e: %f\n", pib_percapta_2);
+    if (opcao2 == opcao1) {
+        printf("\nErro: O segundo atributo deve ser diferente do primeiro!\n");
+        return 1;
+    }
 
-//DEFININDO O SUPER-TRUNFO SUPER PODER
+    switch (opcao2) {
+        case 1: valor1B = populacao1; valor2B = populacao2; break;
+        case 2: valor1B = area1; valor2B = area2; break;
+        case 3: valor1B = pib1; valor2B = pib2; break;
+        case 4: valor1B = pontosTuristicos1; valor2B = pontosTuristicos2; break;
+        case 5: valor1B = densidadePopulacional1; valor2B = densidadePopulacional2; densidade2 = 1; break;
+        case 6: valor1B = pibPerCapita1; valor2B = pibPerCapita2; break;
+        case 7: valor1B = superPoder1; valor2B = superPoder2; break;
+        default: printf("\nOpção inválida!\n"); return 1;
+    }
 
-super_poder2= (float)(populacao_2 + area_2 + pib_2 + pib_percapta_2+ area_2/populacao_2);
-printf("super_poder2 é: %f\n", super_poder2);
+    // Soma dos atributos escolhidos (inverte a soma para densidade)
+    soma1 = (densidade1 ? -valor1A : valor1A) + (densidade2 ? -valor1B : valor1B);
+    soma2 = (densidade1 ? -valor2A : valor2A) + (densidade2 ? -valor2B : valor2B);
 
-// COMPARANDO OS ATRIBUTOS QUE IRÁ DEFINIR O VENCEDOR COM AS ESTRUTURAS DE DECISAO
+    // Exibição do resultado
+    printf("\n--- Resultado da Comparação ---\n");
+    printf("%s: %.2f + %.2f = %.2f\n", nomeCidade1, valor1A, valor1B, soma1);
+    printf("%s: %.2f + %.2f = %.2f\n", nomeCidade2, valor2A, valor2B, soma2);
 
-if (populacao_1 > populacao_2)  // o maior atributo vence
-{
-    printf("Sao Paulo venceu!\n");
-}  else{
-    printf("Rio de Janeiro venceu!\n");
-}
+    // Determinar o vencedor considerando a densidade inversa corretamente
+    if (soma1 > soma2) {
+        printf("\nVencedor: %s\n", nomeCidade1);
+    } else if (soma2 > soma1) {
+        printf("\nVencedor: %s\n", nomeCidade2);
+    } else {
+        printf("\nEmpate!\n");
+    }
 
-if (area_1 > area_2)  // o maior atributo vence
-{
-    printf("Sao Paulo venceu!\n");
-}  else{
-    printf("Rio de Janeiro venceu!\n");
-}
-if (pib_1 > pib_2)  // o maior atributo vence
-{
-   printf("Sao Paulo venceu!\n");
-}  else{
-    printf("Rio de Janeiro venceu!\n");
-}
-
-if(pontos_turristico_1 > pontos_turristico_2)   // maior atributo vence
-{
-    printf("Sao Paulo venceu!\n");
-}    else{
-    printf("Rio de Janeiro venceu!\n");
-}
-if(densidade_populacional_1 < densidade_populacional_2) // vence o menor atributo
-{
-    printf("Sao Paulo venceu!\n");
-}  else{
-    printf("Rio de Janeiro venceu!\n");
-}
-    
-if (pib_percapta_1 > pib_percapta_2)  // o maior atributo vence
-{
-    printf("Sao Paulo venceu!\n");
-}   else{
-    printf("Rio de Janeiro venceu!\n");
-}
-
-return 0;
+    return 0;
 }
